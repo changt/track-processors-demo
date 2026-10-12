@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Background blur demo</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        font-family: system-ui, sans-serif;
+      }
+      body {
+        margin: 0;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+      h1 {
+        font-size: 1.2rem;
+        margin: 0;
+      }
+      video {
+        width: 100%;
+        max-width: 720px;
+        aspect-ratio: 4 / 3;
+        background: #000;
+        border-radius: 8px;
+        object-fit: cover;
+        transform: scaleX(-1);
+      }
+      .toggle {
+        display: flex;
+        border: 1px solid currentColor;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      .toggle button {
+        font: inherit;
+        padding: 8px 16px;
+        border: 0;
+        background: transparent;
+        color: inherit;
+        cursor: pointer;
+      }
+      .toggle button + button {
+        border-left: 1px solid currentColor;
+      }
+      .toggle button[aria-pressed='true'] {
+        background: #1f6feb;
+        color: #fff;
+      }
+      .toggle button:disabled {
+        opacity: 0.5;
+      }
+      #status,
+      footer {
+        font-size: 0.85rem;
+        opacity: 0.7;
+        text-align: center;
+        max-width: 720px;
+      }
+    </style>
+    <script type="module" crossorigin src="./assets/try-kPyF_pyS.js"></script>
+  </head>
+  <body>
+    <h1>Background blur demo</h1>
+    <video id="video" autoplay muted playsinline></video>
+    <div class="toggle" id="toggle">
+      <button type="button" data-model="off" aria-pressed="true">Off</button>
+      <button type="button" data-model="mediapipe" aria-pressed="false">MediaPipe</button>
+      <button type="button" data-model="modnet" aria-pressed="false">MODNet</button>
+    </div>
+    <div id="status">Starting camera…</div>
+    <footer>
+      Runs entirely in your browser; no video leaves your device. Built with
+      <a href="https://github.com/livekit/track-processors-js">@livekit/track-processors</a>.
+      MODNet (Apache-2.0, <a href="https://github.com/ZHKKKe/MODNet">ZHKKKe/MODNet</a>) runs on
+      LiteRT.js with WebGPU.
+    </footer>
+  </body>
+</html>
