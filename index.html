@@ -51,7 +51,25 @@
         background: #1f6feb;
         color: #fff;
       }
-      .toggle button:disabled {
+      .controls {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+        max-width: 720px;
+      }
+      select {
+        font: inherit;
+        padding: 8px;
+        border: 1px solid currentColor;
+        border-radius: 8px;
+        background: transparent;
+        color: inherit;
+        flex: 1 1 220px;
+        min-width: 0;
+      }
+      select:disabled {
         opacity: 0.5;
       }
       #status,
@@ -62,22 +80,38 @@
         max-width: 720px;
       }
     </style>
-    <script type="module" crossorigin src="./assets/try-DFD0PK49.js"></script>
+    <script type="module" crossorigin src="./assets/try-wEbEvM_L.js"></script>
   </head>
   <body>
     <h1>Background replacement demo</h1>
     <video id="video" autoplay muted playsinline></video>
-    <div class="toggle" id="toggle">
-      <button type="button" data-model="off" aria-pressed="true">Off</button>
-      <button type="button" data-model="mediapipe" aria-pressed="false">MediaPipe</button>
-      <button type="button" data-model="modnet" aria-pressed="false">MODNet</button>
+    <div class="controls">
+      <select id="model" aria-label="Segmentation model">
+        <option value="off">Off</option>
+        <option value="mediapipe">MediaPipe selfie (256×256)</option>
+        <option value="mediapipe-landscape">MediaPipe selfie landscape (256×144)</option>
+        <option value="modnet">MODNet (352×192, LiteRT)</option>
+        <option value="pphs-v2">PP-HumanSegV2-Lite (256×144, ONNX Runtime)</option>
+        <option value="pphs-v1">PP-HumanSegV1-Lite (288×160, ONNX Runtime)</option>
+        <option value="vhm">ModelScope video matting (256×144, LiteRT)</option>
+      </select>
+      <div class="toggle" id="mode" role="group" aria-label="Mask treatment">
+        <button type="button" data-mode="alpha" aria-pressed="true">Alpha</button>
+        <button type="button" data-mode="mask" aria-pressed="false">Mask</button>
+      </div>
     </div>
     <div id="status">Starting camera…</div>
     <footer>
       Runs entirely in your browser; no video leaves your device. Built with
       <a href="https://github.com/livekit/track-processors-js">@livekit/track-processors</a>.
-      MODNet (Apache-2.0, <a href="https://github.com/ZHKKKe/MODNet">ZHKKKe/MODNet</a>) runs on
-      LiteRT.js with WebGPU. Background photo by Samantha Gades on
+      Alpha blends the background in by each model's confidence; Mask blurs the mask and cuts it
+      at 0.5, as for a binary mask. MediaPipe runs on WebGL; the other models need WebGPU. MODNet
+      (Apache-2.0, <a href="https://github.com/ZHKKKe/MODNet">ZHKKKe/MODNet</a>) and video human
+      matting (Apache-2.0,
+      <a href="https://modelscope.cn/models/iic/cv_effnetv2_video-human-matting/summary">ModelScope</a>)
+      run on LiteRT.js; PP-HumanSeg (Apache-2.0,
+      <a href="https://github.com/PaddlePaddle/PaddleSeg/tree/release/2.9/contrib/PP-HumanSeg">PaddleSeg</a>)
+      on ONNX Runtime Web. Background photo by Samantha Gades on
       <a href="https://unsplash.com/photos/BlIhVfXbi9s">Unsplash</a>.
     </footer>
   </body>
