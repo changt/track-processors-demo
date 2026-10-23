@@ -93,7 +93,7 @@
         <option value="modnet">MODNet (352×192, LiteRT)</option>
         <option value="pphs-v2">PP-HumanSegV2-Lite (256×144, ONNX Runtime)</option>
         <option value="pphs-v1">PP-HumanSegV1-Lite (288×160, ONNX Runtime)</option>
-        <option value="vhm">ModelScope video matting (256×144, LiteRT)</option>
+        <option value="vhm">EffNetV2 recurrent matting (DAMO, 256×144, LiteRT)</option>
       </select>
       <div class="toggle" id="mode" role="group" aria-label="Mask treatment">
         <button type="button" data-mode="alpha" aria-pressed="true">Alpha</button>
@@ -108,8 +108,8 @@
       at 0.5, as for a binary mask. "Mask ready" times every model from the frame going in to its
       mask being finished on the GPU, on one frame in four; MediaPipe's segment() returns before
       its GPU work is done. MediaPipe runs on WebGL; the other models need WebGPU. MODNet
-      (Apache-2.0, <a href="https://github.com/ZHKKKe/MODNet">ZHKKKe/MODNet</a>) and video human
-      matting (Apache-2.0,
+      (Apache-2.0, <a href="https://github.com/ZHKKKe/MODNet">ZHKKKe/MODNet</a>) and EffNetV2
+      recurrent matting (DAMO; Apache-2.0,
       <a href="https://modelscope.cn/models/iic/cv_effnetv2_video-human-matting/summary">ModelScope</a>)
       run on LiteRT.js; PP-HumanSeg (Apache-2.0,
       <a href="https://github.com/PaddlePaddle/PaddleSeg/tree/release/2.9/contrib/PP-HumanSeg">PaddleSeg</a>)

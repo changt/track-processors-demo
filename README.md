@@ -12,7 +12,7 @@ MediaPipe runs on WebGL; the other models need WebGPU.
 | [MODNet](https://github.com/ZHKKKe/MODNet) (Apache-2.0, © ZHKKKe), from the ONNX export at [Xenova/modnet](https://huggingface.co/Xenova/modnet) | 352×192 | LiteRT.js | `models/modnet_352x192_folded_float16.tflite` |
 | [PP-HumanSegV2-Lite](https://github.com/PaddlePaddle/PaddleSeg/tree/release/2.9/contrib/PP-HumanSeg) portrait (Apache-2.0, © PaddlePaddle Authors) | 256×144 | ONNX Runtime Web | `models/pphs_v2_portrait_256x144.onnx` |
 | [PP-HumanSegV1-Lite](https://github.com/PaddlePaddle/PaddleSeg/tree/release/2.9/contrib/PP-HumanSeg) portrait (Apache-2.0, © PaddlePaddle Authors), at Paddle.js's lighter size | 288×160 | ONNX Runtime Web | `models/pphs_v1_portrait_288x160.onnx` |
-| [Video human matting](https://modelscope.cn/models/iic/cv_effnetv2_video-human-matting/summary) (Apache-2.0, © Alibaba DAMO Academy) | 256×144 | LiteRT.js | `models/vhm_256x144_float16.tflite` |
+| EffNetV2 recurrent matting: [Alibaba DAMO Academy's video human matting model](https://modelscope.cn/models/iic/cv_effnetv2_video-human-matting/summary) (Apache-2.0, © Alibaba DAMO Academy), an EfficientNetV2 encoder with an RVM-style recurrent decoder | 256×144 | LiteRT.js | `models/vhm_256x144_float16.tflite` |
 
 The models are converted from their original releases for a fixed input size: the PP-HumanSeg models through paddle2onnx with the output trimmed to the person channel, and the TFLite models through onnx2tf with fp16 weights.
 
