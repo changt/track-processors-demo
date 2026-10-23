@@ -80,7 +80,7 @@
         max-width: 720px;
       }
     </style>
-    <script type="module" crossorigin src="./assets/try-ndFwuJBx.js"></script>
+    <script type="module" crossorigin src="./assets/try-B81n73s7.js"></script>
   </head>
   <body>
     <h1>Background replacement demo</h1>
@@ -105,7 +105,9 @@
       Runs entirely in your browser; no video leaves your device. Built with
       <a href="https://github.com/livekit/track-processors-js">@livekit/track-processors</a>.
       Alpha blends the background in by each model's confidence; Mask blurs the mask and cuts it
-      at 0.5, as for a binary mask. MediaPipe runs on WebGL; the other models need WebGPU. MODNet
+      at 0.5, as for a binary mask. "Mask ready" times every model from the frame going in to its
+      mask being finished on the GPU, on one frame in four; MediaPipe's segment() returns before
+      its GPU work is done. MediaPipe runs on WebGL; the other models need WebGPU. MODNet
       (Apache-2.0, <a href="https://github.com/ZHKKKe/MODNet">ZHKKKe/MODNet</a>) and video human
       matting (Apache-2.0,
       <a href="https://modelscope.cn/models/iic/cv_effnetv2_video-human-matting/summary">ModelScope</a>)

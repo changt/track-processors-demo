@@ -2,7 +2,7 @@
 
 Camera background replacement in the browser with [@livekit/track-processors](https://github.com/livekit/track-processors-js), to compare segmentation models on a phone. No LiveKit room is involved; video never leaves the device.
 
-Pick a model from the menu. **Alpha** composites with each model's person confidence as is, so hair and uncertain regions blend in; **Mask** blurs the mask and cuts it at 0.5, the treatment for a binary mask. The URL keeps both choices (`?model=modnet&mode=mask`). The status line shows frames per second and segmentation time per frame.
+Pick a model from the menu. **Alpha** composites with each model's person confidence as is, so hair and uncertain regions blend in; **Mask** blurs the mask and cuts it at 0.5, the treatment for a binary mask. The URL keeps both choices (`?model=modnet&mode=mask`). The status line shows frames per second and, for one frame in four, how long the model takes from the frame going in to its mask being finished on the GPU, the same measurement for every model. It also shows how long the model's `segment()` call takes to return, which for MediaPipe is only the time to queue its GPU work.
 
 MediaPipe runs on WebGL; the other models need WebGPU.
 
