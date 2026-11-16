@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mask blending demo</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        font-family: system-ui, sans-serif;
+      }
+      body {
+        margin: 0;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+      h1 {
+        font-size: 1.2rem;
+        margin: 0;
+      }
+      video {
+        width: 100%;
+        max-width: 720px;
+        aspect-ratio: 4 / 3;
+        background: #000;
+        border-radius: 8px;
+        object-fit: cover;
+        transform: scaleX(-1);
+      }
+      .controls {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+        width: 100%;
+        max-width: 720px;
+      }
+      .toggle {
+        display: flex;
+        border: 1px solid currentColor;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      .toggle button {
+        font: inherit;
+        padding: 8px 16px;
+        border: 0;
+        background: transparent;
+        color: inherit;
+        cursor: pointer;
+      }
+      .toggle button + button {
+        border-left: 1px solid currentColor;
+      }
+      .toggle button[aria-pressed='true'] {
+        background: #1f6feb;
+        color: #fff;
+      }
+      .toggle button:disabled {
+        cursor: default;
+        opacity: 0.6;
+      }
+      #status,
+      footer {
+        font-size: 0.85rem;
+        opacity: 0.7;
+        text-align: center;
+        max-width: 720px;
+      }
+      #status {
+        min-height: 1.2em;
+      }
+    </style>
+    <script type="module" crossorigin src="./assets/index-DymAc62H.js"></script>
+  </head>
+  <body>
+    <h1>Mask blending demo</h1>
+    <video id="video" autoplay muted playsinline></video>
+    <div class="controls">
+      <div class="toggle" id="blending" role="group" aria-label="Mask blending">
+        <button type="button" data-value="off" aria-pressed="false">Off</button>
+        <button type="button" data-value="binary" aria-pressed="false">Binary</button>
+        <button type="button" data-value="alpha" aria-pressed="true">Alpha</button>
+      </div>
+      <div class="toggle" id="background" role="group" aria-label="Background">
+        <button type="button" data-value="image" aria-pressed="true">Image</button>
+        <button type="button" data-value="blur" aria-pressed="false">Blur</button>
+      </div>
+    </div>
+    <div id="status">Starting camera…</div>
+    <footer>
+      Both settings run the same model, MediaPipe's selfie segmenter. Binary is the default of
+      <a href="https://github.com/livekit/track-processors-js">@livekit/track-processors</a>: each
+      pixel is the person or the background, with a feathered edge cut at 0.5. Alpha is the
+      <code>maskBlending: 'alpha'</code> option: the model's confidence that a pixel is the person
+      is that pixel's opacity, so hair and uncertain edges blend into the background. Runs
+      entirely in your browser; no video leaves your device. Background photo by Samantha Gades
+      on <a href="https://unsplash.com/photos/BlIhVfXbi9s">Unsplash</a>.
+    </footer>
+  </body>
+</html>

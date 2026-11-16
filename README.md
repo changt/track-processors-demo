@@ -16,6 +16,10 @@ MediaPipe runs on WebGL; the other models need WebGPU.
 
 The models are converted from their original releases for a fixed input size: the PP-HumanSeg models through paddle2onnx with the output trimmed to the person channel, and the TFLite models through onnx2tf with fp16 weights.
 
+## Mask blending
+
+[`blending/`](https://changt.github.io/track-processors-demo/blending/) shows the library's `maskBlending` option on the model it ships with, MediaPipe's selfie segmenter. **Binary** is the default: each pixel is the person or the background, with a feathered edge cut at 0.5. **Alpha** uses the model's confidence that a pixel is the person as that pixel's opacity. The background can be an image or a blur, and the URL keeps both choices (`?mask=alpha&bg=blur`).
+
 Background photo by Samantha Gades on [Unsplash](https://unsplash.com/photos/BlIhVfXbi9s).
 
 This is a disposable static build.
