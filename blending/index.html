@@ -63,6 +63,83 @@
         cursor: default;
         opacity: 0.6;
       }
+      .range {
+        width: 100%;
+        max-width: 720px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        font-size: 0.9rem;
+      }
+      .range[aria-disabled='true'] {
+        opacity: 0.4;
+      }
+      .range-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      .range-head output {
+        font-variant-numeric: tabular-nums;
+      }
+      .range-track {
+        position: relative;
+        height: 28px;
+      }
+      .range-track::before,
+      #range-fill {
+        content: '';
+        position: absolute;
+        top: 12px;
+        height: 4px;
+        border-radius: 2px;
+      }
+      .range-track::before {
+        left: 0;
+        right: 0;
+        background: currentColor;
+        opacity: 0.25;
+      }
+      #range-fill {
+        background: #1f6feb;
+      }
+      /* Both inputs span the track; only their thumbs take the pointer. */
+      .range-track input {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 28px;
+        margin: 0;
+        background: none;
+        pointer-events: none;
+        -webkit-appearance: none;
+        appearance: none;
+      }
+      .range-track input::-webkit-slider-runnable-track {
+        background: none;
+      }
+      .range-track input::-moz-range-track {
+        background: none;
+      }
+      .range-track input::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        pointer-events: auto;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 2px solid #fff;
+        background: #1f6feb;
+        cursor: pointer;
+      }
+      .range-track input::-moz-range-thumb {
+        pointer-events: auto;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        border: 2px solid #fff;
+        background: #1f6feb;
+        cursor: pointer;
+      }
       #status,
       footer {
         font-size: 0.85rem;
@@ -74,7 +151,7 @@
         min-height: 1.2em;
       }
     </style>
-    <script type="module" crossorigin src="./assets/index-DymAc62H.js"></script>
+    <script type="module" crossorigin src="./assets/index-kjM2vB2X.js"></script>
   </head>
   <body>
     <h1>Mask blending demo</h1>
@@ -90,13 +167,27 @@
         <button type="button" data-value="blur" aria-pressed="false">Blur</button>
       </div>
     </div>
+    <div class="range" id="range">
+      <div class="range-head">
+        <span>Alpha range</span>
+        <output id="range-value"></output>
+      </div>
+      <div class="range-track">
+        <div id="range-fill"></div>
+        <input id="range-low" type="range" min="0" max="1" step="0.01" aria-label="Low threshold" />
+        <input id="range-high" type="range" min="0" max="1" step="0.01" aria-label="High threshold" />
+      </div>
+    </div>
     <div id="status">Starting camera…</div>
     <footer>
-      Both settings run the same model, MediaPipe's selfie segmenter. Binary is the default of
-      <a href="https://github.com/livekit/track-processors-js">@livekit/track-processors</a>: each
-      pixel is the person or the background, with a feathered edge cut at 0.5. Alpha is the
-      <code>maskBlending: 'alpha'</code> option: the model's confidence that a pixel is the person
-      is that pixel's opacity, so hair and uncertain edges blend into the background. Runs
+      Both settings run the same model, MediaPipe's selfie segmenter, in
+      <a href="https://github.com/livekit/track-processors-js">@livekit/track-processors</a>. Binary
+      (<code>maskBlending: 'binary'</code>): each pixel is the person or the background, with a
+      feathered edge cut at 0.5. Alpha (<code>maskBlending: 'alpha'</code>): the model's confidence
+      that a pixel is the person is that pixel's opacity, so hair and uncertain edges blend into
+      the background. The alpha range is the <code>alphaRange</code> option: confidence at or below
+      the low knob becomes fully background, at or above the high knob fully the person, with a
+      smooth ramp between. At 0 to 1 the confidence is used as it is. Runs
       entirely in your browser; no video leaves your device. Background photo by Samantha Gades
       on <a href="https://unsplash.com/photos/BlIhVfXbi9s">Unsplash</a>.
     </footer>

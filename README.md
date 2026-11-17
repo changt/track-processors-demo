@@ -18,7 +18,7 @@ The models are converted from their original releases for a fixed input size: th
 
 ## Mask blending
 
-[`blending/`](https://changt.github.io/track-processors-demo/blending/) shows the library's `maskBlending` option on the model it ships with, MediaPipe's selfie segmenter. **Binary** is the default: each pixel is the person or the background, with a feathered edge cut at 0.5. **Alpha** uses the model's confidence that a pixel is the person as that pixel's opacity. The background can be an image or a blur, and the URL keeps both choices (`?mask=alpha&bg=blur`).
+[`blending/`](https://changt.github.io/track-processors-demo/blending/) shows the library's `maskBlending` option on the model it ships with, MediaPipe's selfie segmenter. **Binary**: each pixel is the person or the background, with a feathered edge cut at 0.5. **Alpha** uses the model's confidence that a pixel is the person as that pixel's opacity. A two-knob slider sets the `alphaRange` option, which remaps that confidence: at or below the low knob a pixel is fully background, at or above the high knob fully the person. The background can be an image or a blur, and the URL keeps the choices (`?mask=alpha&bg=blur&lo=0.15&hi=0.85`).
 
 Background photo by Samantha Gades on [Unsplash](https://unsplash.com/photos/BlIhVfXbi9s).
 
